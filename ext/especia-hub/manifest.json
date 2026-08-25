@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Especia Vaporwave Hub",
+  "version": "1.0.0",
+  "description": "Especia 昭和/平成90s HUB — vaporwave & city pop 楽曲・クリエイター検索と Spotify 直リンク",
+  "action": {
+    "default_title": "Especia Hub を開く"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icon128.png"
+  }
+}
