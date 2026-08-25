@@ -79,6 +79,76 @@
             opacity: 0.3;
         }
 
+        /* ---------- Unified Button System ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            border-radius: 0.75rem; /* rounded-xl 統一 */
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn:active { transform: scale(0.96); }
+
+        /* T1: primary — 選択中・最重要アクション (グラデ) */
+        .btn-primary {
+            background: linear-gradient(90deg, #ff71ce, #b967ff);
+            color: #fff;
+            border: 1px solid rgba(255, 113, 206, 0.4);
+            box-shadow: 0 4px 14px -4px rgba(255, 113, 206, 0.45);
+        }
+        .btn-primary:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px -4px rgba(255, 113, 206, 0.55);
+        }
+
+        /* T2: spotify — ブランドカラー (ソリッド) */
+        .btn-spotify {
+            background: #10b981;
+            color: #052e1f;
+            border: 1px solid #10b981;
+            box-shadow: 0 4px 14px -4px rgba(16, 185, 129, 0.4);
+        }
+        .btn-spotify:hover {
+            background: #34d399;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px -4px rgba(16, 185, 129, 0.5);
+        }
+
+        /* T3: outline — 副次アクション (枠線) */
+        .btn-outline {
+            background: rgba(26, 11, 46, 0.5);
+            color: #e2d9f3;
+            border: 1px solid rgba(185, 103, 255, 0.5);
+        }
+        .btn-outline:hover {
+            border-color: rgba(1, 205, 254, 0.75);
+            color: #fff;
+            background: rgba(185, 103, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* T4: ghost — 補助・非選択 (テキスト) */
+        .btn-ghost {
+            background: transparent;
+            color: #9ca3af;
+            border: 1px solid transparent;
+        }
+        .btn-ghost:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* サイズ 統一: sm / md / lg */
+        .btn-sm  { padding: 0.5rem 0.75rem;  font-size: 0.75rem; }
+        .btn-md  { padding: 0.625rem 1rem;   font-size: 0.875rem; }
+        .btn-lg  { padding: 0.875rem 1.25rem; font-size: 0.875rem; }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -116,10 +186,10 @@
 
             <!-- Tab Switcher -->
             <div class="flex bg-vapor-card p-1 rounded-xl border border-vapor-pink/30">
-                <button id="tabCatalogBtn" onclick="switchTab('catalog')" class="px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-gradient-to-r from-vapor-pink to-vapor-purple text-white shadow">
+                <button id="tabCatalogBtn" onclick="switchTab('catalog')" class="btn btn-md btn-primary">
                     <i class="fa-solid fa-music"></i> <span class="hidden sm:inline">カタログ</span>
                 </button>
-                <button id="tabJsonBtn" onclick="switchTab('json')" class="px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:text-white transition flex items-center gap-2">
+                <button id="tabJsonBtn" onclick="switchTab('json')" class="btn btn-md btn-ghost">
                     <i class="fa-solid fa-code"></i> <span class="hidden sm:inline">JSONデータ</span>
                 </button>
             </div>
@@ -145,7 +215,7 @@
 
                 <div class="flex flex-wrap gap-3">
                     <a href="https://open.spotify.com/intl-es/album/3bbpT87HT5W0ILCmsImBdA" target="_blank" rel="noopener noreferrer" 
-                       class="px-5 py-3 rounded-xl font-bold text-sm bg-emerald-500 hover:bg-emerald-400 text-black transition flex items-center gap-2 shadow-lg shadow-emerald-500/20">
+                       class="btn btn-lg btn-spotify">
                         <i class="fa-brands fa-spotify text-lg"></i> 名盤『GUSTO』をSpotifyで開く
                     </a>
                 </div>
@@ -165,11 +235,11 @@
 
                     <!-- Genre Category Buttons -->
                     <div class="flex flex-wrap gap-2 items-center" id="genreFilters">
-                        <button onclick="setFilter('all')" class="genre-btn px-3 py-2 rounded-lg text-xs font-bold bg-vapor-pink text-black border border-vapor-pink transition" data-genre="all">すべて</button>
-                        <button onclick="setFilter('City Pop / ディスコ')" class="genre-btn px-3 py-2 rounded-lg text-xs font-bold bg-vapor-dark border border-vapor-purple/50 hover:border-vapor-blue text-gray-300 transition" data-genre="City Pop / ディスコ">City Pop / ディスコ</button>
-                        <button onclick="setFilter('Vaporwave / チル')" class="genre-btn px-3 py-2 rounded-lg text-xs font-bold bg-vapor-dark border border-vapor-purple/50 hover:border-vapor-blue text-gray-300 transition" data-genre="Vaporwave / チル">Vaporwave / チル</button>
-                        <button onclick="setFilter('ファンク / ブギー')" class="genre-btn px-3 py-2 rounded-lg text-xs font-bold bg-vapor-dark border border-vapor-purple/50 hover:border-vapor-blue text-gray-300 transition" data-genre="ファンク / ブギー">ファンク / ブギー</button>
-                        <button onclick="setFilter('AOR / リゾート')" class="genre-btn px-3 py-2 rounded-lg text-xs font-bold bg-vapor-dark border border-vapor-purple/50 hover:border-vapor-blue text-gray-300 transition" data-genre="AOR / リゾート">AOR / リゾート</button>
+                        <button onclick="setFilter('all')" class="btn btn-sm btn-primary genre-btn" data-genre="all">すべて</button>
+                        <button onclick="setFilter('City Pop / ディスコ')" class="btn btn-sm btn-ghost genre-btn" data-genre="City Pop / ディスコ">City Pop / ディスコ</button>
+                        <button onclick="setFilter('Vaporwave / チル')" class="btn btn-sm btn-ghost genre-btn" data-genre="Vaporwave / チル">Vaporwave / チル</button>
+                        <button onclick="setFilter('ファンク / ブギー')" class="btn btn-sm btn-ghost genre-btn" data-genre="ファンク / ブギー">ファンク / ブギー</button>
+                        <button onclick="setFilter('AOR / リゾート')" class="btn btn-sm btn-ghost genre-btn" data-genre="AOR / リゾート">AOR / リゾート</button>
                     </div>
                 </div>
 
@@ -197,10 +267,10 @@
                     </div>
 
                     <div class="flex gap-2 w-full sm:w-auto">
-                        <button onclick="copyJsonData()" class="flex-1 sm:flex-none px-4 py-2 bg-vapor-purple/30 hover:bg-vapor-purple/50 text-vapor-pink border border-vapor-pink/40 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2">
+                        <button onclick="copyJsonData()" class="btn btn-md btn-outline flex-1 sm:flex-none">
                             <i class="fa-solid fa-copy"></i> JSONをコピー
                         </button>
-                        <button onclick="downloadJsonData()" class="flex-1 sm:flex-none px-4 py-2 bg-vapor-blue/20 hover:bg-vapor-blue/40 text-vapor-blue border border-vapor-blue/40 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2">
+                        <button onclick="downloadJsonData()" class="btn btn-md btn-outline flex-1 sm:flex-none">
                             <i class="fa-solid fa-download"></i> JSONを保存
                         </button>
                     </div>
@@ -392,13 +462,13 @@
             if (tab === 'catalog') {
                 catalogTab.classList.remove('hidden');
                 jsonTab.classList.add('hidden');
-                tabCatalogBtn.className = "px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-gradient-to-r from-vapor-pink to-vapor-purple text-white shadow";
-                tabJsonBtn.className = "px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:text-white transition flex items-center gap-2";
+                tabCatalogBtn.className = "btn btn-md btn-primary";
+                tabJsonBtn.className = "btn btn-md btn-ghost";
             } else {
                 catalogTab.classList.add('hidden');
                 jsonTab.classList.remove('hidden');
-                tabJsonBtn.className = "px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-gradient-to-r from-vapor-pink to-vapor-purple text-white shadow";
-                tabCatalogBtn.className = "px-4 py-2 rounded-lg text-sm font-bold text-gray-400 hover:text-white transition flex items-center gap-2";
+                tabJsonBtn.className = "btn btn-md btn-primary";
+                tabCatalogBtn.className = "btn btn-md btn-ghost";
             }
         }
 
@@ -407,9 +477,9 @@
             const buttons = document.querySelectorAll('.genre-btn');
             buttons.forEach(btn => {
                 if (btn.dataset.genre === genre) {
-                    btn.className = "genre-btn px-3 py-2 rounded-lg text-xs font-bold bg-vapor-pink text-black border border-vapor-pink transition shadow-md shadow-vapor-pink/30";
+                    btn.className = "btn btn-sm btn-primary genre-btn";
                 } else {
-                    btn.className = "genre-btn px-3 py-2 rounded-lg text-xs font-bold bg-vapor-dark border border-vapor-purple/50 hover:border-vapor-blue text-gray-300 transition";
+                    btn.className = "btn btn-sm btn-ghost genre-btn";
                 }
             });
             filterData();
@@ -494,12 +564,12 @@
                         <!-- Spotify Action Links -->
                         <div class="pt-3 border-t border-vapor-pink/10 flex items-center gap-2">
                             <a href="${spotifySearchUrl}" target="_blank" rel="noopener noreferrer" 
-                               class="flex-1 py-2.5 px-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-black border border-emerald-500/40 text-xs font-bold transition flex items-center justify-center gap-2 shadow-sm">
+                               class="btn btn-sm btn-spotify flex-1">
                                 <i class="fa-brands fa-spotify text-base"></i> Spotifyで検索
                             </a>
                             <button onclick="copyToClipboard('${track.title} - ${track.artist} (作曲: ${track.composer})')" 
                                     title="曲情報をコピー"
-                                    class="p-2.5 rounded-xl bg-vapor-purple/20 hover:bg-vapor-purple/50 text-vapor-pink border border-vapor-pink/30 text-xs transition">
+                                    class="btn btn-sm btn-outline">
                                 <i class="fa-regular fa-copy"></i>
                             </button>
                         </div>
